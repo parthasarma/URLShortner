@@ -1,0 +1,13 @@
+[project]
+name = "urlshortner"
+version = "0.1.0"
+description = "Minimal URL shortener with FastAPI, SQLite, and static HTML/JS frontend"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[tool.uv]
+# no dev deps for this minimal project

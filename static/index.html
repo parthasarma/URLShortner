@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URLShortner</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>URLShortner</h1>
+    <p class="subtitle">Shorten URLs. Retrieve originals. Instant redirects.</p>
+
+    <div class="card">
+      <h2>Shorten a URL</h2>
+      <div class="input-group">
+        <input id="long-url" type="url" placeholder="https://example.com/very/long/path" autocomplete="off">
+        <button id="shorten-btn">Shorten</button>
+      </div>
+      <div id="shorten-result" class="result hidden"></div>
+      <div id="shorten-error" class="error hidden"></div>
+    </div>
+
+    <div class="card">
+      <h2>Lookup original URL</h2>
+      <div class="input-group">
+        <input id="short-input" type="text" placeholder="http://127.0.0.1:8000/abc123 or abc123" autocomplete="off">
+        <button id="lookup-btn">Lookup</button>
+      </div>
+      <div id="lookup-result" class="result hidden"></div>
+      <div id="lookup-error" class="error hidden"></div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
