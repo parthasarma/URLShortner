@@ -30,7 +30,7 @@ uv sync
 uv run uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-Open http://127.0.0.1:8000
+Open http://localhost:8000
 
 The SQLite database is created automatically at `data/urls.db`.
 
@@ -44,7 +44,7 @@ The SQLite database is created automatically at `data/urls.db`.
    - Click the resulting short link (opens destination in new tab)
 
 2. **Lookup**
-   - Paste a short URL (e.g. `http://127.0.0.1:8000/abc12345`) or just the code
+    - Paste a short URL (e.g. `http://localhost:8000/abc12345`) or just the code
    - Click **Lookup**
    - Click the shown long URL to open it
 
@@ -64,7 +64,7 @@ Response:
 ```json
 {
   "code": "a1B2c3D4",
-  "short_url": "http://127.0.0.1:8000/a1B2c3D4",
+  "short_url": "http://localhost:8000/a1B2c3D4",
   "long_url": "https://example.com/long/path?with=query",
   "created_at": "2026-08-08T03:19:30.123456+00:00"
 }
@@ -74,7 +74,7 @@ Response:
 
 ```
 POST /api/lookup
-{ "short": "http://127.0.0.1:8000/a1B2c3D4" }
+{ "short": "http://localhost:8000/a1B2c3D4" }
 ```
 
 or

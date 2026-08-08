@@ -1,5 +1,5 @@
 import sqlite3
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlsplit, urlunsplit
 from fastapi import APIRouter, HTTPException, Request
 from starlette.responses import RedirectResponse, JSONResponse
 from .base62 import encode, decode
@@ -7,6 +7,9 @@ from .database import get_url_by_long_url, get_url_by_id, insert_url, now_utc_is
 from .models import ShortenRequest, ShortenResponse, LookupRequest, LookupResponse
 
 router = APIRouter()
+
+def public_base_url(request: Request) -> str:
+    return 'http://localhost:8000/'
 
 def _extract_code(value: str) -> str:
     value = value.strip()
@@ -29,7 +32,7 @@ async def shorten(req: Request, body: ShortenRequest):
     if existing:
         id_ = existing["id"]
         code = encode(id_)
-        short_url = f"{req.base_url}{code}"
+        short_url = f"{public_base_url(req)}{code}"
         return ShortenResponse(
             code=code,
             short_url=short_url,
@@ -44,7 +47,7 @@ async def shorten(req: Request, body: ShortenRequest):
         if existing:
             id_ = existing["id"]
             code = encode(id_)
-            short_url = f"{req.base_url}{code}"
+            short_url = f"{public_base_url(req)}{code}"
             return ShortenResponse(
                 code=code,
                 short_url=short_url,
@@ -53,7 +56,7 @@ async def shorten(req: Request, body: ShortenRequest):
             )
         raise HTTPException(status_code=500, detail="Failed to create short URL")
     code = encode(id_)
-    short_url = f"{req.base_url}{code}"
+    short_url = f"{public_base_url(req)}{code}"
     return ShortenResponse(
         code=code,
         short_url=short_url,
